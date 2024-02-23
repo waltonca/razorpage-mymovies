@@ -1,3 +1,7 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MyMovies.Data;
+
 namespace MyMovies
 {
     public class Program
@@ -5,7 +9,9 @@ namespace MyMovies
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddDbContext<MyMoviesContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("MyMoviesContext") ?? throw new InvalidOperationException("Connection string 'MyMoviesContext' not found.")));
+            
             // Add services to the container.
             builder.Services.AddRazorPages();
 
