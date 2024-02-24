@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMovies.Data;
 
@@ -10,9 +11,11 @@ using MyMovies.Data;
 namespace MyMovies.Migrations
 {
     [DbContext(typeof(MyMoviesContext))]
-    partial class MyMoviesContextModelSnapshot : ModelSnapshot
+    [Migration("20240224032325_MovieCategoryConstraint")]
+    partial class MovieCategoryConstraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -38,7 +41,7 @@ namespace MyMovies.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CategoryId1")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FileName")
@@ -61,20 +64,20 @@ namespace MyMovies.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.HasIndex("CategoryId1");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("MyMovies.Models.Movie", b =>
                 {
-                    b.HasOne("MyMovies.Models.Category", "CategoryId")
+                    b.HasOne("MyMovies.Models.Category", "Category")
                         .WithMany("Movies")
-                        .HasForeignKey("CategoryId1")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CategoryId");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("MyMovies.Models.Category", b =>

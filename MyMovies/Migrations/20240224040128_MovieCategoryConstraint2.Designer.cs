@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMovies.Data;
 
@@ -10,9 +11,11 @@ using MyMovies.Data;
 namespace MyMovies.Migrations
 {
     [DbContext(typeof(MyMoviesContext))]
-    partial class MyMoviesContextModelSnapshot : ModelSnapshot
+    [Migration("20240224040128_MovieCategoryConstraint2")]
+    partial class MovieCategoryConstraint2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
