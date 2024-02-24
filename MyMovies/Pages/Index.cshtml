@@ -4,4 +4,18 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1>All Movies</h1>
+<div class="card-container">
+    @foreach (var movie in Model.Movies)
+    {
+        string imageSrc = "/uploads/" + movie.FileName;
+
+        <div class="card">
+            <a asp-page="DisplayMovie" asp-route-id="@movie.MovieId">Display</a>
+            <img src="@imageSrc"/>
+            <div class="card-caption">
+                <img src="~/profiles/jane.jpg" />
+                <div>Jane</div>
+            </div>
+        </div>
+    }
+</div>
