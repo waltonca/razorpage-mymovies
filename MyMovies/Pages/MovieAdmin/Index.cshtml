@@ -1,4 +1,4 @@
-﻿@page
+﻿ @page
 @model MyMovies.Pages.MovieAdmin.IndexModel
 
 @{
@@ -13,6 +13,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Title)
             </th>
@@ -28,6 +29,9 @@
     <tbody>
 @foreach (var item in Model.Movie) {
         <tr>
+            <td>
+                <img src="/uploads/@item.FileName" class="img-fluid" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
