@@ -11,7 +11,7 @@
     <a asp-page="Create" class="btn btn-secondary">Create New</a>
 </p>
 
-@foreach (var item in Model.Movie)
+@foreach (var item in Model.Movies)
 {
     <div class="row row-photoadmin">
 
@@ -21,6 +21,7 @@
 
         <div class="col-md-9">
             <h3>@item.Title</h3>
+            <p>@item.Category.Title</P>
             <p>@item.Genre</p>
             <p>@item.Year</p>
             <p>

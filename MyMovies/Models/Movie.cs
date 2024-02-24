@@ -8,6 +8,6 @@
         public int Year { get; set; }
         public DateTime PublishDate { get; set; }
         public string FileName { get; set; } = string.Empty;
-        public Category Category { get; set; } = default!;
+        public Category Category { get; set; } = new();
     }
 }

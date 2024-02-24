@@ -24,10 +24,29 @@ namespace MyMovies.Pages.MovieAdmin
         [DisplayName("Upload Photo")]
         public IFormFile FileUpload { get; set; }
 
+        // Category select options
+        public List<SelectListItem> CategoryOptions { get; set; } = new List<SelectListItem>();
+
         public CreateModel(MyMovies.Data.MyMoviesContext context, IHostEnvironment environment)
         {
             _context = context;
             _environment = environment;
+
+            //
+            // Populate the category select options
+            //
+
+            // get all the categories in table
+            List<Category> categories = _context.Category.ToList();
+
+            foreach (var category in categories)
+            {
+                CategoryOptions.Add(new SelectListItem
+                {
+                    Text = category.Title,
+                    Value = category.CategoryId.ToString()
+                });
+            }
         }
 
         public IActionResult OnGet()
@@ -40,22 +59,30 @@ namespace MyMovies.Pages.MovieAdmin
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+
+            // Set the category for the Movie object based on user's selection
+            Category selectCategory = _context.Category.Single(m => m.CategoryId == Movie.Category.CategoryId);
+            Movie.Category = selectCategory;
+
+            // Set the Publish Date for the Movie
+            Movie.PublishDate = DateTime.Now;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            // Set the Publish Date for the photo
+            // Set the Publish Date for the Movie
             Movie.PublishDate = DateTime.Now;
 
             //
             // Upload file to server
             //
 
-            // Make a unique filename for the photo
+            // Make a unique filename for the Movie
             string filename = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff_") + FileUpload.FileName;
 
-            // Update Photo object to include the photo filename
+            // Update Photo object to include the Movie filename
             Movie.FileName = filename;
 
             // Save the file

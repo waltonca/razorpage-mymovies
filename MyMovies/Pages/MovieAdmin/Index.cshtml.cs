@@ -19,11 +19,12 @@ namespace MyMovies.Pages.MovieAdmin
             _context = context;
         }
 
-        public IList<Movie> Movie { get;set; } = default!;
+        public IList<Movie> Movies { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Movie = await _context.Movie.ToListAsync();
+            // Add an Include() to join the Movie to Category when executing the SQL statement.
+            Movies = await _context.Movie.Include("Category").ToListAsync();
         }
     }
 }
