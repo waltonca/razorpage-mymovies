@@ -3,4 +3,18 @@
 @{
 }
 
-<h1>Display Individual Movie</h1>
+@{
+    string imagePath = "/uploads/" + Model.Movie.FileName;
+}
+
+<div class="d-flex justify-content-center">
+    <img src="@imagePath" class="img-fluid" />
+</div>
+
+<br />
+<br />
+<h3>@Model.Movie.Title</h3>
+<p>@Model.Movie.Genre</p>
+<p>@Model.Movie.Year</p>
+<p>@Model.Movie.PublishDate.ToString("D")</p>
+<p><a asp-page="./Index" class="btn btn-secondary">Return</a></p>

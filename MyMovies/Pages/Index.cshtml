@@ -10,7 +10,7 @@
         string imageSrc = "/uploads/" + movie.FileName;
 
         <div class="card">
-            <a asp-page="DisplayMovie" asp-route-id="@movie.MovieId">Display</a>
+            <a asp-page="DisplayMovie" asp-route-id="@movie.MovieId"></a>
             <img src="@imageSrc"/>
             <div class="card-caption">
                 <img src="~/profiles/jane.jpg" />
