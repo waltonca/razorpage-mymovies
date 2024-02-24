@@ -5,48 +5,29 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>My Movies</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-secondary">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Year)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Movie) {
-        <tr>
-            <td>
-                <img src="/uploads/@item.FileName" class="img-fluid" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.MovieId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.MovieId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.MovieId">Delete</a>
-            </td>
-        </tr>
+
+@foreach (var item in Model.Movie)
+{
+    <div class="row row-photoadmin">
+
+        <div class="col-md-3">
+            <img src="/uploads/@item.FileName" class="img-fluid" />
+        </div>
+
+        <div class="col-md-9">
+            <h3>@item.Title</h3>
+            <p>@item.Genre</p>
+            <p>@item.Year</p>
+            <p>
+                <a asp-page="./Edit" asp-route-id="@item.MovieId" class="btn btn-primary">Edit</a>&nbsp;&nbsp;&nbsp;
+                <a asp-page="./Delete" asp-route-id="@item.MovieId" class="btn btn-danger">Delete</a>
+            </p>
+        </div>
+
+    </div>
 }
-    </tbody>
-</table>
