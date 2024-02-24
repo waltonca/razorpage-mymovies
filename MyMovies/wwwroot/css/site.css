@@ -22,6 +22,8 @@ body {
 }
 
 /* Custom style */
+
+
 .card-container {
     width: 100%;
     margin: 20px auto;
@@ -85,15 +87,7 @@ body {
     margin-right: 10px;
 }
 
-/* Home page column layout */
 
-.card-container {
-    width: 100%;
-    margin: 20px auto;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
 
 /* Photo Admin styles */
 
